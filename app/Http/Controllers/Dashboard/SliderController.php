@@ -57,6 +57,8 @@ class SliderController extends Controller
         if ($request->hasFile('image')) {
 
             $data['image'] = $request->file(key: 'image')->store('sliders', 'public');
+            copy(storage_path("app/public/{$data['image']}"), public_path("storage/{$data['image']}"));
+
         }
 
         Slider::updateOrCreate(['id' => $request->id], $data);

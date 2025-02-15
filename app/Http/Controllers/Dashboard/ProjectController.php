@@ -84,6 +84,7 @@ public function store(Request $request)
         }
 
         $imagePath = $request->file('image')->store('projects', 'public');
+        copy(storage_path("app/public/{$imagePath}"), public_path("storage/{$imagePath}"));
         ProjectImage::create([
             'project_id' => $project->id,
             'image_path' => $imagePath,

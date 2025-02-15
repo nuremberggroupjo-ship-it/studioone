@@ -47,6 +47,7 @@ class ServiceController extends Controller
         $data = $request->all();
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('services', 'public');
+            copy(storage_path("app/public/{$data['image']}"), public_path("storage/{$data['image']}"));
         }
 
         Service::updateOrCreate(['id' => $request->id], $data);
