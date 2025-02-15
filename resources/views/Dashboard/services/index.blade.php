@@ -26,9 +26,9 @@
                 <table id="services-table" class="table table-bordered">
                     <thead>
                         <tr>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Short Description</th>
-                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -56,6 +56,12 @@
                     serverSide: true,
                     ajax: '{{ route('admin.services.index') }}',
                     columns: [{
+                            data: 'image',
+                            name: 'image',
+                            render: function(data) {
+                                return `<img src="/storage/${data}" alt="Services Image" style="width: 80px;height: 80px;object-fit: cover;">`;
+                            }
+                        }, {
                             data: 'name',
                             name: 'name'
                         },
@@ -63,13 +69,7 @@
                             data: 'short_description',
                             name: 'short_description'
                         },
-                        {
-                            data: 'image',
-                            name: 'image',
-                            render: function(data) {
-                                return `<img src="/storage/${data}" alt="Services Image" style="width: 80px;height: 80px;object-fit: cover;">`;
-                            }
-                        },
+
                         {
                             data: 'action',
                             name: 'action',
