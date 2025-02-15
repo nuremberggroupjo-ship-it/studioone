@@ -25,6 +25,11 @@
                             <label>Image</label>
                             <input type="file" multiple="false" name="image" id="image"
                                 placeholder="Choose an image">
+                            @error('image')
+                                @foreach ($errors->all() as $error)
+                                    <span class="text-danger">{{ $error }}</span>
+                                @endforeach
+                            @enderror
                         </div>
                         <div class="col-md-6 mt-4">
                             <label>Button Link</label>

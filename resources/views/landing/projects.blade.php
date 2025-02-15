@@ -34,33 +34,60 @@
             <span class="category">Execution</span>
             <span class="category">Renovation</span>
         </div>
-        <div class="container portfolio-grid">
+        <div class="portfolio-grid">
             <div class="portfolio-item design">
-                <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 1">
+                <a href="your-link-here" class="overlay-link">
+                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 1">
+                    <div class="overlay-text">Read More</div>
+                </a>
             </div>
             <div class="portfolio-item 3d-renders">
-                <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 2">
+                <a href="your-link-here" class="overlay-link">
+                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 2">
+                    <div class="overlay-text">Read More</div>
+                </a>
             </div>
             <div class="portfolio-item materials">
-                <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 3">
+                <a href="your-link-here" class="overlay-link">
+                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 3">
+                    <div class="overlay-text">Read More</div>
+                </a>
             </div>
             <div class="portfolio-item execution">
-                <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 4">
+                <a href="your-link-here" class="overlay-link">
+                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 4">
+                    <div class="overlay-text">Read More</div>
+                </a>
             </div>
             <div class="portfolio-item renovation">
-                <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 5">
+                <a href="your-link-here" class="overlay-link">
+                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 5">
+                    <div class="overlay-text">Read More</div>
+                </a>
             </div>
             <div class="portfolio-item design">
-                <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 6">
+                <a href="your-link-here" class="overlay-link">
+                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 6">
+                    <div class="overlay-text">Read More</div>
+                </a>
             </div>
             <div class="portfolio-item 3d-renders">
-                <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 7">
+                <a href="your-link-here" class="overlay-link">
+                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 7">
+                    <div class="overlay-text">Read More</div>
+                </a>
             </div>
             <div class="portfolio-item materials">
-                <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 8">
+                <a href="your-link-here" class="overlay-link">
+                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 8">
+                    <div class="overlay-text">Read More</div>
+                </a>
             </div>
             <div class="portfolio-item execution">
-                <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 9">
+                <a href="your-link-here" class="overlay-link">
+                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 9">
+                    <div class="overlay-text">Read More</div>
+                </a>
             </div>
         </div>
         <div class="overlay"></div>

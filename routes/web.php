@@ -9,7 +9,8 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\Dashboard\SliderController as DashboardSliderController;
 use App\Http\Controllers\Dashboard\ServiceController as DashboardServiceController;
 use App\Http\Controllers\Dashboard\ProjectController as DashboardProjectController;
-
+use App\Http\Controllers\ContactController;
+use App\Models\Service;
 // Dashboard
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'admin', 'as'=> "admin."], function () {
@@ -32,7 +33,8 @@ Route::middleware('auth')->group(function () {
 // Landing
 Route::get('/', function () {
     $sliders = Slider::all();
-    return view('landing.index', compact('sliders'));
+    $services = Service::all();
+    return view('landing.index', compact('sliders', 'services'));
 })->name('home');
 // about
 Route::get('/about', function () {
@@ -57,5 +59,11 @@ Route::get('/services', function () {
 Route::get('/projects', function () {
     return view('landing.projects');
 })->name('projects');
+
+// contact
+Route::get('/contact', function () {
+    return view('landing.contact');
+})->name('contact');
+Route::post('/send-contact', [ContactController::class, 'send'])->name('contact.send');
 
 require __DIR__.'/auth.php';

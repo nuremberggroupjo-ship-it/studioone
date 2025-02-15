@@ -13,40 +13,26 @@
         </div>
         <div class="banner-swiper swiper">
             <div class="swiper-wrapper">
+                @foreach ($sliders as $slider)
                 <!-- Slide 1 -->
                 <div class="swiper-slide">
                     <div class="content">
                         <div class="text">
-                            <h1>{{ __('home.banner_title_1') }}</h1>
+                            <h1>{{ App::getLocale() == 'ar' ? $slider->title_ar : $slider->title }}</h1>
                             <p>
-                                {{ __('home.banner_description_1') }}
+                                {{ App::getLocale() == 'ar' ? $slider->description_ar : $slider->description }}
                             </p>
-                            <a href="#" class="mainLink">
-                                {{ __('home.banner_link_1') }} <i class="fas fa-arrow-up"></i>
+                            <a href="{{ $slider->button_link }}" class="mainLink">
+                                {{ App::getLocale() == 'ar' ? $slider->button_name_ar : $slider->button_name }} <i class="fas fa-arrow-up"></i>
                             </a>
                         </div>
                         <div class="image"
-                            style="background-image: url('{{ asset('landing/img/Picture1.png') }}');">
+                            style="background-image: url('{{ asset('storage/' . $slider->image) }}');">
                         </div>
                     </div>
                 </div>
-                <!-- Slide 2 -->
-                <div class="swiper-slide">
-                    <div class="content">
-                        <div class="text">
-                            <h1>{{ __('home.banner_title_2') }}</h1>
-                            <p>
-                                {{ __('home.banner_description_2') }}
-                            </p>
-                            <a href="#" class="mainLink">
-                                {{ __('home.banner_link_2') }} <i class="fas fa-arrow-up"></i>
-                            </a>
-                        </div>
-                        <div class="image"
-                            style="background-image: url('{{ asset('landing/img/2.jpg') }}');">
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
             <!-- Swiper Pagination -->
             <div class="swiper-pagination"></div>
@@ -63,18 +49,20 @@
             <p>{{ __('home.services_description') }}</p>
         </div>
         <div class="services">
+            @foreach ($services as $service)
             <div class="service">
-                <div class="image" style="background-image: url('{{ asset('landing/img/3.jpg') }}')"></div>
+                <div class="image" style="background-image: url('{{ asset('storage/' . $service->image) }}')"></div>
                 <div class="content">
-                    <h3>{{ __('home.services_title_1') }}</h3>
+                    <h3>{{ App::getLocale() == 'ar' ? $service->name_ar : $service->name }}</h3>
                     <p>
-                        {{ __('home.services_description_1') }}
+                        {{ App::getLocale() == 'ar' ? $service->short_description_ar : $service->short_description }}
                     </p>
-                    <a href="#">{{ __('home.services_link_1') }} <i class="fas fa-chevron-right"></i></a>
+                    <a href="{{ route('services') }}">{{ __('home.services_link_1') }} <i class="fas fa-chevron-right"></i></a>
                     <i class="fas fa-tools icon"></i>
                 </div>
             </div>
-            <div class="service">
+            @endforeach
+            {{-- <div class="service">
                 <div class="image" style="background-image: url('{{ asset('landing/img/4.jpg') }}')"></div>
                 <div class="content">
                     <h3>{{ __('home.services_title_2') }}</h3>
@@ -117,7 +105,7 @@
                     <a href="#">{{ __('home.services_link_5') }} <i class="fas fa-chevron-right"></i></a>
                     <i class="fas fa-tools icon"></i>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <div class="overlay"></div>
