@@ -159,9 +159,11 @@
                                     </span>
                                     <!--end:Menu link-->
                                     <!--begin:Menu sub-->
-                                    <div class="menu-sub menu-sub-accordion ">
+                                    <div
+                                        class="menu-sub menu-sub-accordion {{ request()->is('admin*') ? 'hover show' : '' }}">
                                         <!--begin:Menu item-->
-                                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                        <div data-kt-menu-trigger="click"
+                                            class="menu-item menu-accordion {{ request()->is('admin*') ? 'hover show' : '' }}">
                                             <!--begin:Menu link-->
                                             <span class="menu-link">
                                                 <span class="menu-bullet">
@@ -183,6 +185,17 @@
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
                                                         <span class="menu-title">Sliders</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link {{ request()->is('admin/services') ? 'active' : '' }}"
+                                                        href="{{ route('admin.services.index') }}">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Services</span>
                                                     </a>
                                                     <!--end:Menu link-->
                                                 </div>

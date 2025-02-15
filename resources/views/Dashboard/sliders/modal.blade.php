@@ -29,27 +29,27 @@
                         <div class="col-md-6 mt-4">
                             <label>Button Link</label>
                             <input type="text" name="button_link" id="slider-button_link" required
-                                class="form-control" placeholder="Enter the button link">
+                                class="form-control form-control-solid" placeholder="Enter the button link">
                         </div>
                         <div class="col-md-6 mt-4">
                             <label>Description</label>
                             <textarea name="description" cols="5" rows="5" id="slider-description" required
-                                class="form-control text-editor" placeholder="Enter the description"></textarea>
+                                class="form-control form-control-solid text-editor" placeholder="Enter the description"></textarea>
                         </div>
                         <div class="col-md-6 mt-4">
                             <label>Description (Arabic)</label>
                             <textarea name="description_ar" cols="5" rows="5" id="slider-description_ar" required
-                                class="form-control text-editor" placeholder="أدخل الوصف"></textarea>
+                                class="form-control form-control-solid text-editor" placeholder="أدخل الوصف"></textarea>
                         </div>
                         <div class="col-md-6 mt-4">
                             <label>Button Name</label>
                             <input type="text" name="button_name" id="slider-button_name" required
-                                class="form-control" placeholder="Enter the button name">
+                                class="form-control form-control-solid" placeholder="Enter the button name">
                         </div>
                         <div class="col-md-6 mt-4">
                             <label>Button Name (Arabic)</label>
                             <input type="text" name="button_name_ar" id="slider-button_name_ar" required
-                                class="form-control" placeholder="أدخل اسم الزر">
+                                class="form-control form-control-solid" placeholder="أدخل اسم الزر">
                         </div>
 
                     </div>

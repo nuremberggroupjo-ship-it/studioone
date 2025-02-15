@@ -7,15 +7,18 @@ use Illuminate\Support\Facades\App;
 use App\Models\Slider;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\Dashboard\SliderController as DashboardSliderController;
+use App\Http\Controllers\Dashboard\ServiceController as DashboardServiceController;
 
 // Dashboard
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'admin', 'as'=> "admin."], function () {
     Route::get('/', function () {
-        return view("Dashboard.Banner.index");
-    })->name('admin.dashboard');
+        return view("Dashboard.index");
+    })->name('dashboard');
 
     Route::resource('sliders', DashboardSliderController::class);
+    Route::resource('services', DashboardServiceController::class);
+
 });
 
 Route::middleware('auth')->group(function () {
