@@ -1,17 +1,21 @@
 <?php
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 class Slider extends Model
 {
-    public function translations()
-    {
-        return $this->hasMany(SliderTranslation::class);
-    }
+    use HasFactory;
 
-    public function translation($language)
-    {
-        return $this->translations()->where('language', $language)->first();
-    }
+    protected $fillable = [
+        'title',
+        'title_ar',
+        'description',
+        'description_ar',
+        'button_link',
+        'button_name',
+        'button_name_ar',
+        'image',
+    ];
 }

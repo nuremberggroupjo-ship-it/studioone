@@ -25,6 +25,10 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.0.1/ckeditor.css">
+    @stack('styles')
+
 </head>
 
 <body id="kt_app_body" data-kt-app-header-fixed="true" data-kt-app-header-fixed-mobile="true"
@@ -56,9 +60,10 @@
                         <!--end::Sidebar mobile toggle-->
                         <!--begin::Logo-->
                         <a href="index.html" class="app-sidebar-logo">
-                            <img alt="Logo" src="assets/media/logos/logoBlack.png"
+                            <img alt="Logo" src="/assets/media/logos/logoBlack.png"
                                 class="h-25px theme-light-show" />
-                            <img alt="Logo" src="assets/media/logos/WhiteLogo.png" class="h-25px theme-dark-show" />
+                            <img alt="Logo" src="/assets/media/logos/WhiteLogo.png"
+                                class="h-25px theme-dark-show" />
                         </a>
                         <!--end::Logo-->
                     </div>
@@ -143,7 +148,7 @@
                             <div id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false"
                                 class="app-sidebar-menu-primary menu menu-column menu-rounded menu-sub-indention menu-state-bullet-primary px-3 mb-5">
                                 <div data-kt-menu-trigger="click"
-                                    class="menu-item menu-accordion {{ request()->is('admin') ? 'show' : '' }}">
+                                    class="menu-item menu-accordion {{ request()->is('admin*') ? 'show' : '' }}">
                                     <!--begin:Menu link-->
                                     <span class="menu-link">
                                         <span class="menu-icon">
@@ -168,16 +173,16 @@
                                             <!--end:Menu link-->
                                             <!--begin:Menu sub-->
                                             <div
-                                                class="menu-sub menu-sub-accordion {{ request()->is('admin') ? 'show' : '' }}">
+                                                class="menu-sub menu-sub-accordion {{ request()->is('admin/sliders') ? 'show' : '' }}">
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link {{ request()->is('admin') ? 'active' : '' }}"
-                                                        href="pages/user-profile/overview.html">
+                                                    <a class="menu-link {{ request()->is('admin/sliders') ? 'active' : '' }}"
+                                                        href="{{ route('admin.sliders.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
-                                                        <span class="menu-title">Banners</span>
+                                                        <span class="menu-title">Sliders</span>
                                                     </a>
                                                     <!--end:Menu link-->
                                                 </div>
@@ -243,6 +248,7 @@
     <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
     <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
     <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
     @stack('scripts')
 </body>
