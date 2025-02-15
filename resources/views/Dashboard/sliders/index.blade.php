@@ -12,10 +12,10 @@
                 <table id="sliders-table" class="table table-bordered">
                     <thead>
                         <tr>
+                            <th>Image</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Link</th>
-                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
