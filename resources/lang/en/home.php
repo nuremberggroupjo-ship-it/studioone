@@ -98,4 +98,6 @@ return [
     'services_title_1' => 'Interior Design & Space Planning',
     'services_description_1' => 'Custom concepts that combine beauty and functionality.',
     'services_link_1' => 'Read More',
+    'projects_title_page' => 'Projects',
+    'projects_description_page' => 'Recent Work We Have Done',
 ];
