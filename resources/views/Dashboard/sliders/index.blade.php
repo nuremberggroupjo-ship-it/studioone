@@ -95,6 +95,11 @@
                                     $(`[name="${field}"]`).after(
                                         `<div class="error text-danger">${errorMessage}</div>`
                                     );
+                                if (field === 'image') {
+                                    $('#image').after(
+                                        `<div class="error text-danger">${errorMessage}</div>`
+                                    );
+                                }
                                 });
                             } else {
                                 alert('An unexpected error occurred.');
