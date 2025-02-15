@@ -100,4 +100,7 @@ return [
     'services_title_1' => 'تصميم الداخلي وتخطيط المساحة',
     'services_description_1' => 'المفاهيم المخصصة التي تجمع الجمال والوظيفة.',
     'services_link_1' => 'اقرأ المزيد',
+    'projects_title_page' => 'المشاريع',
+    'projects_description_page' => 'أحدث عملنا',
+    
 ];

@@ -50,4 +50,9 @@ Route::get('/services', function () {
     return view('landing.services');
 })->name('services');
 
+// projects
+Route::get('/projects', function () {
+    return view('landing.projects');
+})->name('projects');
+
 require __DIR__.'/auth.php';
