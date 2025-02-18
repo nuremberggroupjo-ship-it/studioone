@@ -9,6 +9,8 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\Dashboard\SliderController as DashboardSliderController;
 use App\Http\Controllers\Dashboard\ServiceController as DashboardServiceController;
 use App\Http\Controllers\Dashboard\ProjectController as DashboardProjectController;
+use App\Http\Controllers\Dashboard\PostController as DashboardPostController;
+
 use App\Http\Controllers\ContactController;
 use App\Models\Service;
 // Dashboard
@@ -21,6 +23,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'admin', 'as'=> 
     Route::resource('sliders', DashboardSliderController::class);
     Route::resource('services', DashboardServiceController::class);
     Route::resource('projects', DashboardProjectController::class);
+    Route::resource('posts', DashboardPostController::class);
 
 
 });
