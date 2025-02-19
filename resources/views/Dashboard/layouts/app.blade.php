@@ -209,10 +209,17 @@
                                                         </span>
                                                         <span class="menu-title">Projects</span>
                                                     </a>
-                                                    <!--end:Menu link-->
+                                                </div>
+                                                <div class="menu-item">
+                                                    <a class="menu-link {{ request()->is('admin/posts') ? 'active' : '' }}"
+                                                        href="{{ route('admin.posts.index') }}">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Posts</span>
+                                                    </a>
                                                 </div>
                                             </div>
-                                            <!--end:Menu sub-->
                                         </div>
                                         <!--end:Menu item-->
                                     </div>
