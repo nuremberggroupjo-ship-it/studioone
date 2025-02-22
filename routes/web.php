@@ -13,6 +13,8 @@ use App\Http\Controllers\Dashboard\PostController as DashboardPostController;
 
 use App\Http\Controllers\ContactController;
 use App\Models\Service;
+use App\Models\Project;
+use App\Models\ProjectCategory;
 // Dashboard
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'admin', 'as'=> "admin."], function () {
@@ -60,7 +62,9 @@ Route::get('/services', function () {
 
 // projects
 Route::get('/projects', function () {
-    return view('landing.projects');
+    $projects = Project::all();
+    $categories = ProjectCategory::all();
+    return view('landing.projects', compact('projects', 'categories'));
 })->name('projects');
 
 // contact

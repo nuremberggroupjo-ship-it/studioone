@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
           categories.forEach((cat) => cat.classList.remove("active"));
           category.classList.add("active");
 
-          const filter = category.textContent.toLowerCase().replace(/\s+/g, "-");
+          const filter = category.textContent;
 
           // Apply fade-out first to all items
           portfolioItems.forEach((item) => fadeOut(item, 300));

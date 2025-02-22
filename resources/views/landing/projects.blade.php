@@ -28,67 +28,19 @@
         </div>
         <div class="categories">
             <span class="category">All</span>
-            <span class="category">Design</span>
-            <span class="category">3D Renders</span>
-            <span class="category">Materials</span>
-            <span class="category">Execution</span>
-            <span class="category">Renovation</span>
+            @foreach ($categories as $category)
+                <span class="category">{{$category->name}}</span>
+            @endforeach
         </div>
         <div class="portfolio-grid">
-            <div class="portfolio-item design">
+            @foreach ($projects as $project)
+            <div class="portfolio-item {{implode(' ', $project->categories->pluck('name')->toArray())}}">
                 <a href="your-link-here" class="overlay-link">
-                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 1">
+                    <img src="{{asset('storage/'.$project->primary_image->image_path)}}" alt="{{$project->title}}">
                     <div class="overlay-text">Read More</div>
                 </a>
             </div>
-            <div class="portfolio-item 3d-renders">
-                <a href="your-link-here" class="overlay-link">
-                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 2">
-                    <div class="overlay-text">Read More</div>
-                </a>
-            </div>
-            <div class="portfolio-item materials">
-                <a href="your-link-here" class="overlay-link">
-                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 3">
-                    <div class="overlay-text">Read More</div>
-                </a>
-            </div>
-            <div class="portfolio-item execution">
-                <a href="your-link-here" class="overlay-link">
-                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 4">
-                    <div class="overlay-text">Read More</div>
-                </a>
-            </div>
-            <div class="portfolio-item renovation">
-                <a href="your-link-here" class="overlay-link">
-                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 5">
-                    <div class="overlay-text">Read More</div>
-                </a>
-            </div>
-            <div class="portfolio-item design">
-                <a href="your-link-here" class="overlay-link">
-                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 6">
-                    <div class="overlay-text">Read More</div>
-                </a>
-            </div>
-            <div class="portfolio-item 3d-renders">
-                <a href="your-link-here" class="overlay-link">
-                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 7">
-                    <div class="overlay-text">Read More</div>
-                </a>
-            </div>
-            <div class="portfolio-item materials">
-                <a href="your-link-here" class="overlay-link">
-                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 8">
-                    <div class="overlay-text">Read More</div>
-                </a>
-            </div>
-            <div class="portfolio-item execution">
-                <a href="your-link-here" class="overlay-link">
-                    <img src="{{asset('landing/img/about-us-image-1.jpg')}}" alt="Project 9">
-                    <div class="overlay-text">Read More</div>
-                </a>
-            </div>
+            @endforeach
         </div>
         <div class="overlay"></div>
     </section>
