@@ -41,7 +41,7 @@ class ServiceController extends Controller
             'short_description_ar' => 'required|string',
             'description' => 'required|string',
             'description_ar' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
         ]);
 
         $data = $request->all();

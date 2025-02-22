@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.master')
+@extends('Dashboard.layouts.master')
 
 @section('content')
 <div class="d-flex flex-column flex-root" id="kt_app_root">

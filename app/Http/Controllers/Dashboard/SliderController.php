@@ -49,7 +49,7 @@ class SliderController extends Controller
             'button_name' => 'required|string|max:255',
             'button_name_ar' => 'required|string|max:255',
             'button_link' => 'required|url',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         $data = $request->except('image');
