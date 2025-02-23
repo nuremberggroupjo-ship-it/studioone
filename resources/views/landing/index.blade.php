@@ -57,55 +57,11 @@
                     <p>
                         {{ App::getLocale() == 'ar' ? $service->short_description_ar : $service->short_description }}
                     </p>
-                    <a href="{{ route('services') }}">{{ __('home.services_link_1') }} <i class="fas fa-chevron-right"></i></a>
+                    <a href="{{ route('service' , $service->id) }}">{{ __('home.services_link_1') }} <i class="fas fa-chevron-right"></i></a>
                     <i class="fas fa-tools icon"></i>
                 </div>
             </div>
             @endforeach
-            {{-- <div class="service">
-                <div class="image" style="background-image: url('{{ asset('landing/img/4.jpg') }}')"></div>
-                <div class="content">
-                    <h3>{{ __('home.services_title_2') }}</h3>
-                    <p>
-                        {{ __('home.services_description_2') }}
-                    </p>
-                    <a href="#">{{ __('home.services_link_2') }} <i class="fas fa-chevron-right"></i></a>
-                    <i class="fas fa-tools icon"></i>
-                </div>
-            </div>
-            <div class="service">
-                <div class="image" style="background-image: url('{{ asset('landing/img/5.jpg') }}')"></div>
-                <div class="content">
-                    <h3>{{ __('home.services_title_3') }}</h3>
-                    <p>
-                        {{ __('home.services_description_3') }}
-                    </p>
-                    <a href="#">{{ __('home.services_link_3') }} <i class="fas fa-chevron-right"></i></a>
-                    <i class="fas fa-tools icon"></i>
-                </div>
-            </div>
-            <div class="service">
-                <div class="image" style="background-image: url('{{ asset('landing/img/6.jpg') }}')"></div>
-                <div class="content">
-                    <h3>{{ __('home.services_title_4') }}</h3>
-                    <p>
-                        {{ __('home.services_description_4') }}
-                    </p>
-                    <a href="#">{{ __('home.services_link_4') }} <i class="fas fa-chevron-right"></i></a>
-                    <i class="fas fa-tools icon"></i>
-                </div>
-            </div>
-            <div class="service">
-                <div class="image" style="background-image: url('{{ asset('landing/img/7.jpg') }}')"></div>
-                <div class="content">
-                    <h3>{{ __('home.services_title_5') }}</h3>
-                    <p>
-                        {{ __('home.services_description_5') }}
-                    </p>
-                    <a href="#">{{ __('home.services_link_5') }} <i class="fas fa-chevron-right"></i></a>
-                    <i class="fas fa-tools icon"></i>
-                </div>
-            </div> --}}
         </div>
     </div>
     <div class="overlay"></div>
@@ -117,16 +73,17 @@
         <div class="image" style="background-image: url('{{ asset('landing/img/about-us-image-1.jpg') }}')"></div>
         <div class="content">
             <div class="top-content">
-                <h3>{{ __('home.about_us_title') }}</h3>
-                <p>{{ __('home.about_us_description') }}</p>
+                <h3>{{ App::getLocale() === 'ar' ? $posts[0]->name_ar : $posts[0]->name }}</h3>
+                <p>{{ App::getLocale() === 'ar' ? $posts[0]->small_header_ar : $posts[0]->small_header }}</p>
             </div>
             <div class="bottom-content">
-                <p>{{ __('home.about_us_description_2') }}</p>
                 <p>
-                    {{ __('home.about_us_description_3') }}
+                    <span class="description-text">
+                        {{ strip_tags(App::getLocale() === 'ar' ? $posts[0]->description_ar : $posts[0]->description) }}
+                    </span>
                 </p>
             </div>
-            <a href="#" class="mainLink">
+            <a href="{{ route('about') }}" class="mainLink">
                 {{ __('home.about_us_link') }} <i class="fas fa-arrow-up"></i>
             </a>
         </div>
@@ -245,50 +202,19 @@
     <div class="swiper projects-swiper">
         <div class="swiper-wrapper">
             <!-- Slide 1 -->
+            @if($projects->isNotEmpty())
             <div class="swiper-slide">
                 <div class="image">
-                    <img src="{{ asset('landing/img/portfolio1.jpg') }}" alt="Project Image" />
+                    <img src="{{ asset('storage/' . $projects[0]->primary_image->image_path) }}" alt="Project Image" />
                     <div class="circle-text">
-                        <h3>{{ __('home.projects_title_1') }}</h3>
-                        <p>
-                            {{ __('home.projects_description_1') }}
-                        </p>
+                        <h3>{{ App::getLocale() === 'ar' ? $projects[0]->title_ar : $projects[0]->title }}</h3>
                         <div class="mainLink">
-                            <a href="#"><i class="fas fa-arrow-up"></i></a>
+                            <a href="{{ route('project', $projects[0]->id) }}"><i class="fas fa-arrow-up"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Slide 2 -->
-            <div class="swiper-slide">
-                <div class="image">
-                    <img src="{{ asset('landing/img/portfolio2.jpg') }}" alt="Project Image" />
-                    <div class="circle-text">
-                        <h3>{{ __('home.projects_title_2') }}</h3>
-                        <p>
-                            {{ __('home.projects_description_2') }}
-                        </p>
-                        <div class="mainLink">
-                            <a href="#"><i class="fas fa-arrow-up"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Slide 3 -->
-            <div class="swiper-slide">
-                <div class="image">
-                    <img src="{{ asset('landing/img/portfolio3.jpg') }}" alt="Project Image" />
-                    <div class="circle-text">
-                        <h3>{{ __('home.projects_title_3') }}</h3>
-                        <p>
-                            {{ __('home.projects_description_3') }}
-                        </p>
-                        <div class="mainLink">
-                            <a href="#"><i class="fas fa-arrow-up"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endif
         </div>
         <!-- Swiper Pagination -->
         <div class="swiper-pagination"></div>
@@ -304,7 +230,7 @@
             <h2>{{ __('home.contact_us_title') }}</h2>
             <p>{{ __('home.contact_us_description') }}</p>
             <div class="mainLink">
-                <a href="#">{{ __('home.contact_us_link') }} <i class="fas fa-arrow-up"></i></a>
+                <a href="{{ route('contact') }}">{{ __('home.contact_us_link') }} <i class="fas fa-arrow-up"></i></a>
             </div>
         </div>
     </div>

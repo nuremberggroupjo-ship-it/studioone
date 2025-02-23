@@ -27,17 +27,17 @@
             <p>{{ __('home.projects_description_page') }}</p>
         </div>
         <div class="categories">
-            <span class="category">All</span>
+            <span class="category">{{ App::getLocale() === 'ar' ? 'الكل' : 'All' }}</span>
             @foreach ($categories as $category)
-                <span class="category">{{$category->name}}</span>
+                <span class="category">{{ App::getLocale() === 'ar' ? $category->name_ar : $category->name }}</span>
             @endforeach
         </div>
         <div class="portfolio-grid">
             @foreach ($projects as $project)
-            <div class="portfolio-item {{implode(' ', $project->categories->pluck('name')->toArray())}}">
-                <a href="your-link-here" class="overlay-link">
-                    <img src="{{asset('storage/'.$project->primary_image->image_path)}}" alt="{{$project->title}}">
-                    <div class="overlay-text">Read More</div>
+            <div class="portfolio-item {{implode(' ', $project->categories->pluck(App::getLocale() === 'ar' ? 'name_ar' : 'name')->toArray())}}">
+                <a href="{{ route('project', $project->id) }}" class="overlay-link">
+                    <img src="{{asset('storage/'.$project->primary_image->image_path)}}" alt="{{ App::getLocale() === 'ar' ? $project->title_ar : $project->title }}">
+                    <div class="overlay-text">{{ __('home.read_more') }}</div>
                 </a>
             </div>
             @endforeach
@@ -126,7 +126,7 @@
                 <h2>{{ __('home.contact_us_title') }}</h2>
                 <p>{{ __('home.contact_us_description') }}</p>
                 <div class="mainLink">
-                    <a href="#">{{ __('home.contact_us_link') }} <i class="fas fa-arrow-up"></i></a>
+                    <a href="{{ route('contact') }}">{{ __('home.contact_us_link') }} <i class="fas fa-arrow-up"></i></a>
                 </div>
             </div>
         </div>

@@ -16,11 +16,11 @@
                             <input type="file" required id="image" name="image"
                                 class="form-control form-control-solid">
                         </div>
-                        <div class="col-md-12 mt-3">
+                        {{-- <div class="col-md-12 mt-3">
                             <label>Project Images</label>
                             <input type="file" id="images" name="images[]" multiple
                                 class="form-control form-control-solid">
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <label>Title</label>
                             <input type="text" id="project_title" name="title" required
@@ -52,8 +52,8 @@
                             </select>
                         </div>
                         <div class="col-md-6 mt-3">
-                            <input type="checkbox" id="project_is_recent" class="form-check-input" name="is_recent"
-                                value="0">
+                            <input type="hidden" name="is_recent" value="0">
+                            <input type="checkbox" id="project_is_recent" class="form-check-input" name="is_recent" value="1">
                             <label>Is Recent</label>
 
                         </div>
