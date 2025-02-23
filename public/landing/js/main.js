@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           timeoutId = setTimeout(() => {
               portfolioItems.forEach((item) => {
-                  if (filter === "all" || item.classList.contains(filter)) {
+                  if (filter === "All" || item.classList.contains(filter)) {
                       fadeIn(item, 500); // Apply fade-in animation with delay
                   }
               });

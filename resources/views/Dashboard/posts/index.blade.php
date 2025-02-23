@@ -58,7 +58,7 @@
                         data: 'image_path',
                         name: 'image_path',
                         render: function(data) {
-                            return `<img src="${data}" alt="Post Image" style="width: 80px;height: 80px;object-fit: cover;">`;
+                            return `<img src="/storage/${data}" alt="Post Image" style="width: 80px;height: 80px;object-fit: cover;">`;
                         }
                     }, {
                         data: 'name',

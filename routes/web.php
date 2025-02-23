@@ -15,6 +15,7 @@ use App\Http\Controllers\ContactController;
 use App\Models\Service;
 use App\Models\Project;
 use App\Models\ProjectCategory;
+use App\Models\Post;
 // Dashboard
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'admin', 'as'=> "admin."], function () {
@@ -39,11 +40,14 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     $sliders = Slider::all();
     $services = Service::all();
-    return view('landing.index', compact('sliders', 'services'));
+    $posts = Post::all();
+    $projects = Project::with('primary_image')->where('is_recent', 1)->get(); 
+    return view('landing.index', compact('sliders', 'services', 'posts', 'projects'));
 })->name('home');
 // about
 Route::get('/about', function () {
-    return view('landing.about');
+    $posts = Post::where('slug', 'about')->get();
+    return view('landing.about', compact('posts'));
 })->name('about');
 
 // Change Language
@@ -57,8 +61,15 @@ Route::get('/lang/{locale}', function (string $locale) {
 
 // services
 Route::get('/services', function () {
-    return view('landing.services');
+    $services = Service::all();
+    return view('landing.services', compact('services'));
 })->name('services');
+
+// service
+Route::get('/services/{id}', function ($id) {
+    $service = Service::find($id);
+    return view('landing.service', compact('service'));
+})->name('service');
 
 // projects
 Route::get('/projects', function () {
@@ -67,10 +78,23 @@ Route::get('/projects', function () {
     return view('landing.projects', compact('projects', 'categories'));
 })->name('projects');
 
+// project
+Route::get('/projects/{id}', function ($id) {
+    $project = Project::find($id);
+    $categories = ProjectCategory::whereIn('id', $project->categories->pluck('id'))->get();
+    return view('landing.project', compact('project', 'categories'));
+})->name('project');
+
 // contact
 Route::get('/contact', function () {
     return view('landing.contact');
 })->name('contact');
 Route::post('/send-contact', [ContactController::class, 'send'])->name('contact.send');
+// mission&vision
+Route::get('/mission-vision', function () {
+    $ourMission = Post::where('slug', 'our-mission')->get();
+    $ourVision = Post::where('slug', 'our-vision')->get();
+    return view('landing.mission-vision.index', compact('ourMission', 'ourVision'));
+})->name('mission-vision');
 
 require __DIR__.'/auth.php';

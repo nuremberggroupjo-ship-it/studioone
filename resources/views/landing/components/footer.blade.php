@@ -11,38 +11,14 @@
             <div class="links">
                 <h2>{{ __('home.footer_title_1') }}</h2>
                 <ul>
-                    <li><i class="fas fa-chevron-right"></i><a href="">{{ __('home.footer_link_1') }}</a></li>
-                    <li><i class="fas fa-chevron-right"></i><a href="">{{ __('home.footer_link_2') }}</a></li>
-                    <li>
-                        <i class="fas fa-chevron-right"></i><a href="">{{ __('home.footer_link_3') }}</a>
-                    </li>
-                    <li><i class="fas fa-chevron-right"></i><a href="">{{ __('home.footer_link_4') }}</a></li>
-                    <li>
-                        <i class="fas fa-chevron-right"></i><a href="">{{ __('home.footer_link_5') }}</a>
-                    </li>
-                    <li>
-                        <i class="fas fa-chevron-right"></i><a href="">{{ __('home.footer_link_6') }}</a>
-                    </li>
-
+                    <li><i class="fas fa-chevron-right"></i><a href="{{ url('/') }}">{{ __('home.footer_link_1') }}</a></li>
+                    <li><i class="fas fa-chevron-right"></i><a href="{{ url('about') }}">{{ __('home.footer_link_2') }}</a></li>
+                    <li><i class="fas fa-chevron-right"></i><a href="{{ url('projects') }}">{{ __('home.footer_link_3') }}</a></li>
+                    <li><i class="fas fa-chevron-right"></i><a href="{{ url('contact') }}">{{ __('home.footer_link_4') }}</a></li>
+                    <li><i class="fas fa-chevron-right"></i><a href="{{ url('services') }}">{{ __('home.footer_link_5') }}</a></li>
+                    <li><i class="fas fa-chevron-right"></i><a href="{{ url('mission-vision') }}">Mission & Vision</a></li>
                 </ul>
             </div>
-            {{-- <div class="links">
-                <h2>{{ __('home.footer_title_2') }}</h2>
-                <ul>
-                    <li><i class="fas fa-chevron-right"></i><a href="">{{ __('home.footer_link_1') }}</a></li>
-                    <li><i class="fas fa-chevron-right"></i><a href="">{{ __('home.footer_link_2') }}</a></li>
-                    <li>
-                        <i class="fas fa-chevron-right"></i><a href="">{{ __('home.footer_link_3') }}</a>
-                    </li>
-                    <li><i class="fas fa-chevron-right"></i><a href="">{{ __('home.footer_link_4') }}</a></li>
-                    <li>
-                        <i class="fas fa-chevron-right"></i><a href="">{{ __('home.footer_link_5') }}</a>
-                    </li>
-                    <li>
-                        <i class="fas fa-chevron-right"></i><a href="">{{ __('home.footer_link_6') }}</a>
-                    </li>
-                </ul>
-            </div> --}}
             <div class="links">
                 <h2>{{ __('home.footer_title_2') }}</h2>
                 <ul>

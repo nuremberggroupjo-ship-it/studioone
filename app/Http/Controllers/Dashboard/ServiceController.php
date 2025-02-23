@@ -21,8 +21,8 @@ class ServiceController extends Controller
                             data-name_ar="' . $row->name_ar . '"
                             data-short_description="' . $row->short_description . '"
                             data-short_description_ar="' . $row->short_description_ar . '"
-                            data-description="' . $row->description . '"
-                            data-description_ar="' . $row->description_ar . '"
+                            data-description="' . strip_tags($row->description) . '"
+                            data-description_ar="' . strip_tags($row->description_ar) . '"
                             data-image="' . asset("storage/" . $row->image) . '"
                         >Edit</a>
                         <button class="btn btn-sm btn-danger delete-btn" data-id="' . $row->id . '">Delete</button>';

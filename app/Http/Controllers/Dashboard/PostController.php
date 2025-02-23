@@ -38,7 +38,6 @@ class PostController extends Controller
                     data-description_ar="' . $row->description_ar . '"
                     data-image="'  . $imagePath. '"
                 >Edit</a>
-                <button class="btn btn-sm btn-danger delete-btn" data-id="' . $row->id . '">Delete</button>
             ';
         })
         ->rawColumns(['action'])

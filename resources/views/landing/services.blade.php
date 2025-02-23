@@ -26,61 +26,19 @@
                 <p>{{ __('home.services_description') }}</p>
             </div>
             <div class="services">
+                @foreach ($services as $service)
                 <div class="service">
-                    <div class="image" style="background-image: url('{{ asset('landing/img/3.jpg') }}')"></div>
+                    <div class="image" style="background-image: url('{{ asset('storage/' . $service->image) }}')"></div>
                     <div class="content">
-                        <h3>{{ __('home.services_title_1') }}</h3>
+                        <h3>{{ App::getLocale() == 'ar' ? $service->name_ar : $service->name }}</h3>
                         <p>
-                            {{ __('home.services_description_1') }}
+                            {{ App::getLocale() == 'ar' ? $service->short_description_ar : $service->short_description }}
                         </p>
-                        <a href="#">{{ __('home.services_link_1') }} <i class="fas fa-chevron-right"></i></a>
+                        <a href="{{ route('service' , $service->id) }}">{{ __('home.services_link_1') }} <i class="fas fa-chevron-right"></i></a>
                         <i class="fas fa-tools icon"></i>
                     </div>
                 </div>
-                <div class="service">
-                    <div class="image" style="background-image: url('{{ asset('landing/img/4.jpg') }}')"></div>
-                    <div class="content">
-                        <h3>{{ __('home.services_title_2') }}</h3>
-                        <p>
-                            {{ __('home.services_description_2') }}
-                        </p>
-                        <a href="#">{{ __('home.services_link_2') }} <i class="fas fa-chevron-right"></i></a>
-                        <i class="fas fa-tools icon"></i>
-                    </div>
-                </div>
-                <div class="service">
-                    <div class="image" style="background-image: url('{{ asset('landing/img/5.jpg') }}')"></div>
-                    <div class="content">
-                        <h3>{{ __('home.services_title_3') }}</h3>
-                        <p>
-                            {{ __('home.services_description_3') }}
-                        </p>
-                        <a href="#">{{ __('home.services_link_3') }} <i class="fas fa-chevron-right"></i></a>
-                        <i class="fas fa-tools icon"></i>
-                    </div>
-                </div>
-                <div class="service">
-                    <div class="image" style="background-image: url('{{ asset('landing/img/6.jpg') }}')"></div>
-                    <div class="content">
-                        <h3>{{ __('home.services_title_4') }}</h3>
-                        <p>
-                            {{ __('home.services_description_4') }}
-                        </p>
-                        <a href="#">{{ __('home.services_link_4') }} <i class="fas fa-chevron-right"></i></a>
-                        <i class="fas fa-tools icon"></i>
-                    </div>
-                </div>
-                <div class="service">
-                    <div class="image" style="background-image: url('{{ asset('landing/img/7.jpg') }}')"></div>
-                    <div class="content">
-                        <h3>{{ __('home.services_title_5') }}</h3>
-                        <p>
-                            {{ __('home.services_description_5') }}
-                        </p>
-                        <a href="#">{{ __('home.services_link_5') }} <i class="fas fa-chevron-right"></i></a>
-                        <i class="fas fa-tools icon"></i>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <div class="overlay"></div>
@@ -167,7 +125,7 @@
                 <h2>{{ __('home.contact_us_title') }}</h2>
                 <p>{{ __('home.contact_us_description') }}</p>
                 <div class="mainLink">
-                    <a href="#">{{ __('home.contact_us_link') }} <i class="fas fa-arrow-up"></i></a>
+                    <a href="{{ route('contact') }}">{{ __('home.contact_us_link') }} <i class="fas fa-arrow-up"></i></a>
                 </div>
             </div>
         </div>
