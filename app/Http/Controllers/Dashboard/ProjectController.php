@@ -28,15 +28,7 @@ class ProjectController extends Controller
             ->addColumn('action', function ($row) {
                 return '
                     <button class="btn btn-sm btn-primary edit-btn"
-                        data-id="'.$row->id.'"
-                        data-title="'.$row->title.'"
-                        data-title_ar="'.$row->title_ar.'"
-                        data-description="'.strip_tags($row->description).'"
-                        data-description_ar="'.strip_tags($row->description_ar).'"
-                        data-categories="'.implode(',', $row->categories->pluck('id')->toArray()).'"
-                        data-is_recent="'.$row->is_recent.'"
-                        data-primary_image="'.($row->primary_image ? $row->primary_image->image_path : '').'"
-                        data-image="'.implode(',', $row->images->pluck('image_path')->toArray()).'">
+                        data-id="'.$row->id.'">
                         Edit
                     </button>
                     <button class="btn btn-sm btn-danger delete-btn" data-id="'.$row->id.'">Delete</button>';
@@ -66,10 +58,8 @@ public function store(Request $request)
         return response()->json(['errors' => $validator->errors()], 422);
     }
 
-    // Check if the project ID is provided (for update case)
     $project = $request->id ? Project::findOrFail($request->id) : new Project();
 
-    // Update or create the project
     $project->title = $request->title;
     $project->title_ar = $request->title_ar;
     $project->description = $request->description;
@@ -79,7 +69,7 @@ public function store(Request $request)
 
     if ($request->hasFile('image')) {
         if ($project->primary_image) {
-            Storage::delete('public/' . $project->primary_image->image_path);
+            Storage::disk(name: 'public')->delete(paths:$project->primary_image->image_path);
             $project->primary_image->delete();
         }
 
@@ -95,6 +85,10 @@ public function store(Request $request)
     $project->categories()->sync($request->categories);
 
     if ($request->hasFile(key: 'images')) {
+        $images = ProjectImage::where("project_id",$project->id)->where("is_primary",false)->get();
+        foreach($images as $image){
+            Storage::disk(name: 'public')->delete(paths:$image->image_path);
+        }
         foreach ($request->file('images') as $image) {
             $imagePath = $image->store('projects', 'public');
             $a = ProjectImage::create([
@@ -122,5 +116,30 @@ public function store(Request $request)
         $project->delete();
         return response()->json(['message' => 'Project deleted successfully']);
     }
+
+    public function show($id)
+{
+    $project = Project::with('categories', 'images')->find($id);
+
+    if (!$project) {
+        return response()->json(['success' => false, 'message' => 'Project not found'], 404);
+    }
+
+    return response()->json([
+        'success' => true,
+        'project' => [
+            'id' => $project->id,
+            'title' => $project->title,
+            'title_ar' => $project->title_ar,
+            'description' => $project->description,
+            'description_ar' => $project->description_ar,
+            'is_recent' => $project->is_recent,
+            'categories' => $project->categories->pluck('id')->toArray(),
+            'primary_image' => optional($project->primary_image)->image_path,
+            'images' => $project->images->pluck('image_path')->toArray(),
+        ]
+    ]);
+    
+}
 
 }

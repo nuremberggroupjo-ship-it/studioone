@@ -27,17 +27,10 @@ class PostController extends Controller
             return '
                 <a href="#" class="btn btn-sm btn-light edit-btn"
                     data-id="' . $row->id . '"
-                    data-small_header="' . $row->small_header . '"
-                    data-small_header_ar="' . $row->small_header . '"
-                    data-name="' . $row->name . '"
-                    data-name_ar="' . $row->name_ar . '"
-                    data-button_name="' . $row->button_name . '"
-                    data-button_name_ar="' . $row->button_name_ar . '"
-                    data-button_link="' . $row->button_link . '"
-                    data-description="' . $row->description . '"
-                    data-description_ar="' . $row->description_ar . '"
-                    data-image="'  . $imagePath. '"
                 >Edit</a>
+                <a href="#" class="btn btn-sm btn-danger delete-btn"
+                    data-id="' . $row->id . '"
+                >Delete</a>
             ';
         })
         ->rawColumns(['action'])
@@ -57,7 +50,7 @@ class PostController extends Controller
             'button_name' => 'required|string',
             'button_name_ar' => 'required|string',
             'button_link' => 'required|url',
-            'image_path' => 'required|image|mimes:jpg,jpeg,png,webp,aviv|max:2048',
+            'image_path' => 'nullable|image|mimes:jpg,jpeg,png,webp,avif|max:2048',
         ]);
     
         $post = null;
@@ -67,13 +60,18 @@ class PostController extends Controller
             $post = Post::findOrFail($request->id);
     
             if ($request->hasFile('image_path')) {
-                Storage::delete('public/' . $post->image_path);
+                if ($post->image_path) {
+                    Storage::disk('public')->delete(paths: $post->image_path);
+                }
+    
                 $imagePath = $request->file('image_path')->store('posts_images', 'public');
             } else {
                 $imagePath = $post->image_path;
             }
         } else {
-            $imagePath = $request->file('image_path')->store('posts_images', 'public');
+            if ($request->hasFile('image_path')) {
+                $imagePath = $request->file('image_path')->store('posts_images', 'public');
+            }
         }
     
         $slug = \Str::slug($request->name);
@@ -125,9 +123,22 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         if ($post->image_path) {
-            Storage::delete($post->image_path);
+            Storage::disk(name: 'public')->delete(paths: $post->image_path);
         }
         $post->delete();
         return response()->json(['message' => 'Post deleted successfully']);
+    }
+    public function show($id)
+    {
+        $post = Post::find($id);
+
+        if (!$post) {
+            return response()->json(['success' => false, 'message' => 'Post not found'], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'post' => $post
+        ]);
     }
 }

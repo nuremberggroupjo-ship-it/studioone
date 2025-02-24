@@ -53,12 +53,13 @@ class SliderController extends Controller
         ]);
 
         $data = $request->except('image');
-
+        $slider = Slider::find($request->id);
         if ($request->hasFile('image')) {
-
+            if ($slider && $slider->image) {
+                Storage::disk('public')->delete(paths: $slider->image);
+            }
             $data['image'] = $request->file(key: 'image')->store('sliders', 'public');
             copy(storage_path("app/public/{$data['image']}"), public_path("storage/{$data['image']}"));
-
         }
 
         Slider::updateOrCreate(['id' => $request->id], $data);
@@ -76,4 +77,24 @@ class SliderController extends Controller
 
         return response()->json(['success' => 'Slider deleted successfully!']);
     }
+    public function show($id)
+    {
+        $slider = Slider::findOrFail($id);
+
+        return response()->json([
+            'success' => true,
+            'slider' => [
+                'id' => $slider->id,
+                'title' => $slider->title,
+                'title_ar' => $slider->title_ar,
+                'description' => $slider->description,
+                'description_ar' => $slider->description_ar,
+                'button_name' => $slider->button_name,
+                'button_name_ar' => $slider->button_name_ar,
+                'button_link' => $slider->button_link,
+                'image' => $slider->image ? asset('storage/' . $slider->image) : null,
+            ]
+        ]);
+    }
+
 }

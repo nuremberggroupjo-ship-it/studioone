@@ -42,13 +42,12 @@
     @push('scripts')
         <script>
             $(document).ready(function() {
-                $('#serviceModal').on('shown.bs.modal', function() {
-                    $('.text-editor').each(function() {
-                        if (!CKEDITOR.instances[this.name]) {
-                            CKEDITOR.replace(this.name);
-                        }
-                    });
+                $('.text-editor').each(function() {
+                    if (!CKEDITOR.instances[this.name]) {
+                        CKEDITOR.replace(this.name);
+                    }
                 });
+
 
 
                 var table = $('#services-table').DataTable({
@@ -143,41 +142,51 @@
                 });
                 $(document).on('click', '.edit-btn', function() {
                     $('#serviceForm')[0].reset();
-                    let id = $(this).data('id');
-                    let name = $(this).data('name');
-                    let name_ar = $(this).data('name_ar');
-                    let short_description = $(this).data('short_description');
-                    let short_description_ar = $(this).data('short_description_ar');
-                    let description = $(this).data('description');
-                    let description_ar = $(this).data('description_ar');
-                    let image = $(this).data('image');
 
-                    $('#service_id').val(id);
-                    $('#service_name').val(name);
-                    $('#service_name_ar').val(name_ar);
-                    $('#service_short_description').val(short_description);
-                    $('#service_short_description_ar').val(short_description_ar);
-                    $("#modal-title_service").text("Edit Service (" + name + ")")
+                    let serviceId = $(this).data('id');
 
-                    FilePond.find(document.querySelector('#image')).removeFiles();
-                    if (image) {
-                        FilePond.find(document.querySelector('#image')).addFile(image);
-                    }
+                    $.ajax({
+                        url: "{{ route('admin.services.show', '') }}/" +
+                            serviceId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(response) {
+                            if (response.success) {
+                                let service = response.service;
 
-                    $('#serviceModal').modal('show');
+                                $('#service_id').val(service.id);
+                                $('#service_name').val(service.name);
+                                $("#modal-title_service").text("Edit Service (" + service.name +
+                                    ")");
 
-                    $('#serviceModal').on('shown.bs.modal', function() {
-                        if (!CKEDITOR.instances['service_description']) {
-                            CKEDITOR.replace('service_description');
+                                $('#service_name_ar').val(service.name_ar);
+                                $('#service_short_description').val(service.short_description);
+                                $('#service_short_description_ar').val(service
+                                    .short_description_ar);
+
+                                CKEDITOR.instances['service_description'].setData(service
+                                    .description);
+                                CKEDITOR.instances['service_description_ar'].setData(service
+                                    .description_ar);
+
+                                FilePond.find(document.querySelector('#image')).removeFiles();
+                                if (service.image) {
+                                    FilePond.find(document.querySelector('#image')).addFile(service
+                                        .image);
+                                }
+
+                                $('#serviceModal').modal('show');
+                            } else {
+                                alert("Error fetching service details.");
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText);
+                            alert("Failed to fetch service details.");
                         }
-                        if (!CKEDITOR.instances['service_description_ar']) {
-                            CKEDITOR.replace('service_description_ar');
-                        }
-
-                        CKEDITOR.instances['service_description'].setData(description);
-                        CKEDITOR.instances['service_description_ar'].setData(description_ar);
                     });
                 });
+
                 $(document).on('click', '.delete-btn', function() {
                     let id = $(this).data('id');
                     let row = $(this).closest('tr');

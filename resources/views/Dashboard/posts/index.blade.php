@@ -124,43 +124,53 @@
                     $('#postForm')[0].reset();
 
                     let id = $(this).data('id');
-                    let name = $(this).data('name');
-                    let name_ar = $(this).data('name_ar');
-                    let small_header = $(this).data('small_header');
-                    let small_header_ar = $(this).data('small_header_ar');
-                    let short_description = $(this).data('short_description');
-                    let short_description_ar = $(this).data('short_description_ar');
-                    let button_name = $(this).data('button_name');
-                    let button_name_ar = $(this).data('button_name_ar');
-                    let button_link = $(this).data('button_link');
-                    let description = $(this).data('description');
-                    let description_ar = $(this).data('description_ar');
-                    let image = $(this).data('image');
 
-                    $('#post_id').val(id);
-                    $('#name').val(name);
-                    $('#name_ar').val(name_ar);
-                    $('#small_header').val(small_header);
-                    $('#small_header_ar').val(small_header_ar);
-                    $('#button_name').val(button_name);
-                    $('#button_name_ar').val(button_name_ar);
-                    $('#button_link').val(button_link);
+                    $.ajax({
+                        url: "{{ route('admin.posts.show', '') }}/" + id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(response) {
+                            if (response.success) {
+                                let post = response.post;
 
-                    $("#modal-title_post").text("Edit Post (" + name + ")");
+                                $('#post_id').val(post.id);
+                                $('#name').val(post.name);
+                                $('#name_ar').val(post.name_ar);
+                                $('#small_header').val(post.small_header);
+                                $('#small_header_ar').val(post.small_header_ar);
+                                $('#button_name').val(post.button_name);
+                                $('#button_name_ar').val(post.button_name_ar);
+                                $('#button_link').val(post.button_link);
 
-                    FilePond.find(document.querySelector('#image_path'))
-                        .removeFiles();
-                    if (image) {
-                        FilePond.find(document.querySelector('#image_path')).addFile(
-                            image);
-                    }
+                                $("#modal-title_post").text("Edit Post (" + post.name + ")");
 
-                    $('#postModal').modal('show');
+                                FilePond.find(document.querySelector('#image_path')).removeFiles();
+                                if (post.image_path) {
+                                    FilePond.find(document.querySelector('#image_path')).addFile(
+                                        location.origin + "/storage/" + post.image_path);
+                                }
 
-                    CKEDITOR.instances['description'].setData(description);
-                    CKEDITOR.instances['description_ar'].setData(
-                        description_ar);
+                                if (CKEDITOR.instances['description']) {
+                                    CKEDITOR.instances['description'].setData(post.description);
+                                }
+
+                                if (CKEDITOR.instances['description_ar']) {
+                                    CKEDITOR.instances['description_ar'].setData(post
+                                        .description_ar);
+                                }
+
+                                $('#postModal').modal('show');
+                            } else {
+                                alert("Error: Unable to fetch post data.");
+                            }
+                        },
+                        error: function(xhr) {
+                            console.error(xhr.responseText);
+                            alert("Failed to fetch post data.");
+                        }
+                    });
                 });
+
 
                 const inputElement = document.querySelector('#image_path');
                 const pond = FilePond.create(inputElement, {

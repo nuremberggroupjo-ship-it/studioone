@@ -95,11 +95,11 @@
                                     $(`[name="${field}"]`).after(
                                         `<div class="error text-danger">${errorMessage}</div>`
                                     );
-                                if (field === 'image') {
-                                    $('#image').after(
-                                        `<div class="error text-danger">${errorMessage}</div>`
-                                    );
-                                }
+                                    if (field === 'image') {
+                                        $('#image').after(
+                                            `<div class="error text-danger">${errorMessage}</div>`
+                                        );
+                                    }
                                 });
                             } else {
                                 alert('An unexpected error occurred.');
@@ -126,35 +126,47 @@
                 });
                 $(document).on('click', '.edit-btn', function() {
                     $('#sliderForm').trigger('reset');
-                    var id = $(this).data('id');
-                    var title = $(this).data('title');
-                    var title_ar = $(this).data('title_ar');
-                    var description = $(this).data('description');
-                    var description_ar = $(this).data('description_ar');
-                    var button_name = $(this).data('button_name');
-                    var button_name_ar = $(this).data('button_name_ar');
-                    var button_link = $(this).data('button_link');
-                    var image = $(this).data('image');
+
+                    let sliderId = $(this).data('id');
 
 
-                    $("#slider-title_header").text("Edit Slider (" + title + ")")
-                    $('#slider_id').val(id);
-                    $('#slider-title').val(title);
-                    $('#slider-title_ar').val(title_ar);
-                    $('#slider-description').val(description);
-                    $('#slider-description_ar').val(description_ar);
-                    $('#slider-button_name').val(button_name);
-                    $('#slider-button_name_ar').val(button_name_ar);
-                    $('#slider-button_link').val(button_link);
 
+                    $.ajax({
+                        url: "{{ route('admin.sliders.show', '') }}/" +
+                            sliderId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(response) {
+                            if (response.success) {
+                                let slider = response.slider;
 
-                    var imageLink = location.origin + "/storage/" + image
+                                $('#slider_id').val(slider.id);
+                                $('#slider-title').val(slider.title);
+                                $("#slider-title_header").text("Edit Slider(" + slider.title + ")");
+                                $('#slider-title_ar').val(slider.title_ar);
+                                $('#slider-description').val(slider.description);
+                                $('#slider-description_ar').val(slider.description_ar);
+                                $('#slider-button_name').val(slider.button_name);
+                                $('#slider-button_name_ar').val(slider.button_name_ar);
+                                $('#slider-button_link').val(slider.button_link);
 
-                    pond.removeFiles();
+                                pond.removeFiles();
+                                if (slider.image) {
+                                    pond.addFile(slider.image);
+                                }
 
-                    pond.addFile(imageLink)
-                    $('#sliderModal').modal('show');
+                                $('#sliderModal').modal('show');
+                            } else {
+                                alert("Error fetching slider details.");
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText);
+                            alert("Failed to fetch slider details.");
+                        }
+                    });
                 });
+
 
             });
             const inputElement = document.querySelector('#image');
