@@ -182,66 +182,77 @@
                     pond.removeFiles();
                     pondImages.removeFiles()
                 });
-
                 $(document).on('click', '.edit-btn', function() {
                     $('#projectForm')[0].reset();
 
                     let id = $(this).data('id');
-                    let title = $(this).data('title');
-                    let title_ar = $(this).data('title_ar');
-                    let description = $(this).data('description');
-                    let description_ar = $(this).data('description_ar');
-                    console.log($(this).data('categories'))
-                    let categories = $(this).data('categories');
-                    if (typeof categories === 'string') {
-                        categories = categories.split(',');
-                    } else if (!Array.isArray(categories)) {
-                        categories = [];
-                    }
-                    let images = $(this).data('image').split(',');
-                    let image = $(this).data('primary_image');
-                    let is_recent = $(this).data('is_recent');
 
-                    $('#project_id').val(id);
-                    $('#project_title').val(title);
-                    $('#project_title_ar').val(title_ar);
-                    $('#project_is_recent').prop('checked', is_recent);
+                    $.ajax({
+                        url: "{{ route('admin.projects.show', '') }}/" + id, // Ensure the route exists
+                        type: "GET",
+                        dataType: "json",
+                        success: function(response) {
+                            if (response.success) {
+                                let project = response.project;
 
-                    let categorySelect = $('#project_categories');
+                                $('#project_id').val(project.id);
+                                $('#project_title').val(project.title);
+                                $('#project_title_ar').val(project.title_ar);
+                                $('#project_is_recent').prop('checked', project.is_recent);
 
-                    categorySelect.val(categories).trigger('change');
+                                let categories = project.categories;
+                                if (typeof categories === 'string') {
+                                    categories = categories.includes(',') ? categories.split(',')
+                                        .map(item => item.trim()) : [categories];
+                                } else if (typeof categories === 'number') {
+                                    categories = [categories.toString()];
+                                } else if (!Array.isArray(categories)) {
+                                    categories = [];
+                                }
 
-                    $("#modal-title_project").text("Edit Project (" + title + ")");
+                                let categorySelect = $('#project_categories');
+                                categorySelect.val(categories).trigger('change');
 
-                    pond.removeFiles();
-                    pondImages.removeFiles()
+                                $("#modal-title_project").text("Edit Project (" + project.title +
+                                    ")");
 
-                    if (image) {
-                        FilePond.find(document.querySelector('#image')).addFile(
-                            location.origin +
-                            "/storage/" + image);
-                    }
-                    images.forEach(function(img) {
-                        if (img) {
+                                pond.removeFiles();
+                                pondImages.removeFiles();
 
-                            FilePond.find(document.querySelector('#images')).addFile(
-                                location.origin +
-                                "/storage/" + img);
+                                if (project.primary_image) {
+                                    FilePond.find(document.querySelector('#image')).addFile(location
+                                        .origin + "/storage/" + project.primary_image);
+                                }
+
+                                if (project.images && Array.isArray(project.images)) {
+                                    project.images.forEach(function(img) {
+                                        if (img) {
+                                            FilePond.find(document.querySelector('#images'))
+                                                .addFile(location.origin + "/storage/" +
+                                                    img);
+                                        }
+                                    });
+                                }
+
+                                $('#projectModal').modal('show');
+
+                                if (CKEDITOR.instances['project_description']) {
+                                    CKEDITOR.instances['project_description'].setData(project
+                                        .description);
+                                }
+
+                                if (CKEDITOR.instances['project_description_ar']) {
+                                    CKEDITOR.instances['project_description_ar'].setData(project
+                                        .description_ar);
+                                }
+                            } else {
+                                alert("Error: Unable to fetch project data.");
+                            }
+                        },
+                        error: function(xhr) {
+                            console.error(xhr.responseText);
+                            alert("Failed to fetch project data.");
                         }
-                    });
-
-                    $('#projectModal').modal('show');
-
-                    $('#projectModal').on('shown.bs.modal', function() {
-                        if (!CKEDITOR.instances['project_description']) {
-                            CKEDITOR.replace('project_description');
-                        }
-                        if (!CKEDITOR.instances['project_description_ar']) {
-                            CKEDITOR.replace('project_description_ar');
-                        }
-
-                        CKEDITOR.instances['project_description'].setData(description);
-                        CKEDITOR.instances['project_description_ar'].setData(description_ar);
                     });
                 });
 

@@ -13,13 +13,13 @@
 
                         <div class="col-md-6 mt-4">
                             <label>Title</label>
-                            <input type="text" id="slider-title" name="title" required class="form-control"
-                                placeholder="Enter the title">
+                            <input type="text" id="slider-title" name="title" required
+                                class="form-control form-control-solid" placeholder="Enter the title">
                         </div>
                         <div class="col-md-6 mt-4">
                             <label>Title (Arabic)</label>
-                            <input type="text" name="title_ar" id="slider-title_ar" required class="form-control"
-                                placeholder="أدخل العنوان">
+                            <input type="text" name="title_ar" id="slider-title_ar" required
+                                class="form-control form-control-solid" placeholder="أدخل العنوان">
                         </div>
                         <div class="col-md-6 mt-4">
                             <label>Image</label>
