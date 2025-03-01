@@ -1,8 +1,6 @@
 @font-face {
-    font-family: "Syne";
-    src: url("../fonts/Syne-VariableFontwght.woff2") format("woff2"),
-        url("../fonts/Syne-VariableFontwght.woff") format("woff"),
-        url("../fonts/Syne-VariableFont_wght.ttf") format("truetype");
+    font-family: "Montserrat";
+    src: url("../fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
 }
 * {
     -webkit-box-sizing: border-box;
@@ -143,8 +141,8 @@ sup {
 }
 @media (max-width: 992px) {
     .activee {
-        right: 0px;
-        opacity: 1;
+        right: 0px !important;
+        opacity: 1 !important;
         transition: var(--main-transition);
         width: 100%;
         right: 0;
