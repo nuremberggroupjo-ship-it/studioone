@@ -92,7 +92,7 @@ return [
     we believe in the power of creativity to transform spaces into stunning, functional and unique masterpieces that reflect your style and needs. Whether it\'s a home, office, or commercial space, our expert designers blend creativity with practicality to bring your vision to life. With a keen eye for detail and a passion for aesthetics, we craft interiors that inspire and elevate everyday living.',
     'footer_email' => 'Email: info@Studioonejo.com',
     'footer_phone' => 'Phone: 00962799773512 / 009627999742085',
-    'footer_address' => 'Address: Wasfi Al Tal Street, Amman,Jordan,11821',
+    'footer_address' => 'Address: Amman Wasfi Al-Tal St. Maraqa Spaces Complex No. 335 1st Floor Office No.2',
     'services_title_page' => 'Services',
     'services_description_page' => 'We provide the best engineering office services.',
     'services_title_1' => 'Interior Design & Space Planning',
@@ -104,7 +104,7 @@ return [
     'contact_description' => 'Start Your Customer Journey With Us.',
     'contact_phone' => 'Phone :',
     'contact_phone_description' => 'Call Us',
-    'contact_email' => 'Email :',
+    'contact_email' => 'Contact With Us :',
     'contact_email_description' => 'Email Us',
     'contact_address' => 'Location :',
     'contact_address_description' => 'Wasfi Al Tal Street, Amman,Jordan,11821',
@@ -121,4 +121,5 @@ return [
     'mission_vision_title_page' => 'Mission & Vision',
     'categories' => 'Categories',
     'read_more' => 'Read More',
+    'contact_social_media' => 'Social Media',
 ];

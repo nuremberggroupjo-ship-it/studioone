@@ -19,10 +19,6 @@
 
 @section('content')
     <div class="container">
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-primary mb-3" id="add-post_btn" data-bs-toggle="modal" data-bs-target="#postModal">Add
-                Post</button>
-        </div>
         <div class="card">
             <div class="card-body">
                 <table id="posts-table" class="table table-bordered">

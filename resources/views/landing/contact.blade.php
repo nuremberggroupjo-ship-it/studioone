@@ -25,12 +25,19 @@
             <div class="contact-option">
                 <i class="fas fa-map-marker-alt"></i>
                 <h3>{{ __('home.contact_address') }}</h3>
-                <a href="https://maps.app.goo.gl/ZMo67XH5dDR7oCJM9" target="_blank">{{ __('home.contact_address_description') }}</a>
+                <a href="https://maps.app.goo.gl/ZMo67XH5dDR7oCJM9"
+                    target="_blank">{{ __('home.contact_address_description') }}</a>
             </div>
             <div class="contact-option">
                 <i class="fas fa-envelope"></i>
-                <h3>{{ __('home.contact_email') }}</h3>
+                <h3>{{ __('home.contact_social_media') }}</h3>
                 <a href="mailto:info@studioonejo.com">info@studioonejo.com</a>
+                <div class="social">
+                    <a href="https://www.facebook.com/share/1AAWd4Fysm/" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/studio.1.design/" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
             </div>
             <div class="contact-option">
                 <i class="fas fa-phone"></i>

@@ -10,14 +10,14 @@ use App\Http\Controllers\Dashboard\SliderController as DashboardSliderController
 use App\Http\Controllers\Dashboard\ServiceController as DashboardServiceController;
 use App\Http\Controllers\Dashboard\ProjectController as DashboardProjectController;
 use App\Http\Controllers\Dashboard\PostController as DashboardPostController;
+use App\Http\Controllers\Dashboard\CustomersController as DashboardCustomerController;
 
 use App\Http\Controllers\ContactController;
 use App\Models\Service;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\Post;
-// Dashboard
-
+use App\Models\Customers;
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'admin', 'as'=> "admin."], function () {
     Route::get('/', function () {
         return view("Dashboard.index");
@@ -27,8 +27,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'admin', 'as'=> 
     Route::resource('services', DashboardServiceController::class);
     Route::resource('projects', DashboardProjectController::class);
     Route::resource('posts', DashboardPostController::class);
-
-
+    Route::resource('customers', DashboardCustomerController::class);
 });
 
 Route::middleware('auth')->group(function () {
@@ -47,7 +46,8 @@ Route::get('/', function () {
 // about
 Route::get('/about', function () {
     $posts = Post::where('slug', 'about')->get();
-    return view('landing.about', compact('posts'));
+    $customers = Customers::all();
+    return view('landing.about', compact('posts', 'customers'));
 })->name('about');
 
 // Change Language

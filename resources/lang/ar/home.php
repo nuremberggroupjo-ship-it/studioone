@@ -94,7 +94,7 @@ return [
     'about_us_description_page' => 'في ستوديو نون، نؤمن بقوة الإبداع لتحويل المساحات إلى روائع مذهلة، وظيفية وفريدة تعكس أسلوبك واحتياجاتك. سواء كانت منزلًا، مكتبًا، أو مساحة تجارية، يمزج مصممونا الخبراء بين الإبداع والعملية لتحقيق رؤيتك. مع عين دقيقة للتفاصيل وشغف بالجماليات، نصمم ديكورات داخلية تلهم وترفع من مستوى الحياة اليومية.',
     'footer_email' => 'الايميل: info@Studioonejo.com',
     'footer_phone' => 'رقم الهاتف: 00962799773512 / 009627999742085',
-    'footer_address' => 'العنوان: وصفي التل,عمان,الاردن,11821',
+    'footer_address' => 'العنوان: عمان شارع وصفي التل مجمع مساحات مرقة رقم 335 الطابق الأول مكتب رقم 2',
     'services_title_page' => 'الخدمات',
     'services_description_page' => 'نقدم أفضل خدمات المكتب الهندسي.',
     'services_title_1' => 'تصميم الداخلي وتخطيط المساحة',
@@ -106,7 +106,7 @@ return [
     'contact_description' => 'ابدأ رحلتك معنا.',
     'contact_phone' => 'الهاتف :',
     'contact_phone_description' => 'اتصل بنا',
-    'contact_email' => 'الايميل :',
+    'contact_social_media' => 'تواصل معنا :',
     'contact_email_description' => 'ايميل بنا',
     'contact_address' => 'العنوان :',
     'contact_address_description' => 'وصفي التل,عمان,الاردن,11821',
@@ -123,4 +123,5 @@ return [
     'mission_vision_title_page' => 'المهمة والرؤية',
     'categories' => 'التصنيفات',
     'read_more' => 'اقرأ المزيد',
+    'contact_social_media' => 'المواقع الاجتماعية',
 ];
