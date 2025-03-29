@@ -1130,6 +1130,7 @@ footer .container .links {
 }
 footer .container h2 {
     color: var(--main-color-alt);
+    margin-bottom: 15px;
 }
 footer .container ul {
     display: flex;
@@ -1500,7 +1501,7 @@ section.contact .contact-option {
     align-items: flex-start;
     border-bottom: 3px solid var(--main-color-alt);
 }
-section.contact .contact-option i {
+section.contact .contact-option > i {
     font-size: 3rem;
     color: var(--main-color-alt);
     margin: 0px 0px 10px 0px;
@@ -1524,6 +1525,13 @@ section.contact .contact-option a {
 section.contact .contact-option a:hover {
     color: var(--main-color-alt);
 }
+section.contact .contact-option .social {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: 1.5rem;
+}
+
 /* Contact Form Styling */
 
 section.contact-form {

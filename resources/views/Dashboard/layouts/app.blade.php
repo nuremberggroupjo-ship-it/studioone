@@ -219,6 +219,15 @@
                                                         <span class="menu-title">Posts</span>
                                                     </a>
                                                 </div>
+                                                <div class="menu-item">
+                                                    <a class="menu-link {{ request()->is('admin/customers') ? 'active' : '' }}"
+                                                        href="{{ route('admin.customers.index') }}">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Customers</span>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                         <!--end:Menu item-->
