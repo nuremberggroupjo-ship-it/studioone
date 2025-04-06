@@ -29,7 +29,7 @@
                     target="_blank">{{ __('home.contact_address_description') }}</a>
             </div>
             <div class="contact-option">
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-at"></i>
                 <h3>{{ __('home.contact_social_media') }}</h3>
                 <a href="mailto:info@studioonejo.com">info@studioonejo.com</a>
                 <div class="social">
@@ -43,7 +43,7 @@
                 <i class="fas fa-phone"></i>
                 <h3>{{ __('home.contact_phone') }}</h3>
                 <a href="tel:00962799773512">00962799773512</a>
-                <a href="tel:009627999742085">009627999742085</a>
+                <a href="tel:00962799742085">00962799742085</a>
             </div>
         </div>
         <div class="overlay"></div>

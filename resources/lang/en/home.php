@@ -93,6 +93,7 @@ return [
     'footer_email' => 'Email: info@Studioonejo.com',
     'footer_phone' => 'Phone: 00962799773512 / 009627999742085',
     'footer_address' => 'Address: Amman Wasfi Al-Tal St. Maraqa Spaces Complex No. 335 1st Floor Office No.2',
+    'contact_address_description' => 'Amman Wasfi Al-Tal St. Maraqa Spaces Complex No. 335 1st Floor Office No.2',
     'services_title_page' => 'Services',
     'services_description_page' => 'We provide the best engineering office services.',
     'services_title_1' => 'Interior Design & Space Planning',
@@ -107,7 +108,6 @@ return [
     'contact_email' => 'Contact With Us :',
     'contact_email_description' => 'Email Us',
     'contact_address' => 'Location :',
-    'contact_address_description' => 'Wasfi Al Tal Street, Amman,Jordan,11821',
     'first_name' => 'First Name',
     'last_name' => 'Last Name',
     'phone' => 'Phone',
@@ -121,5 +121,5 @@ return [
     'mission_vision_title_page' => 'Mission & Vision',
     'categories' => 'Categories',
     'read_more' => 'Read More',
-    'contact_social_media' => 'Social Media',
+    'contact_social_media' => 'Online Channels',
 ];
