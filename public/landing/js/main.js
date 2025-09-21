@@ -9,7 +9,8 @@ if (bannerSwiper) {
             clickable: true,
         },
         autoplay: {
-            delay: 5000,
+            delay: 100000, 
+            // was 5000
         },
     });
 }

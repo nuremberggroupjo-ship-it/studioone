@@ -4,7 +4,7 @@
             <div class="logo">
                 <img src="{{ asset('landing/img/WhiteLogo.png') }}" alt="Studio One" />
                 <p>{{ __('home.footer_description') }}</p>
-                <a href="#" class="mainLink">
+                <a href="{{ url('contact') }}" class="mainLink">
                     {{ __('home.footer_link') }} <i class="fas fa-arrow-up"></i>
                 </a>
             </div>
@@ -16,20 +16,39 @@
                     <li><i class="fas fa-chevron-right"></i><a href="{{ url('projects') }}">{{ __('home.footer_link_3') }}</a></li>
                     <li><i class="fas fa-chevron-right"></i><a href="{{ url('contact') }}">{{ __('home.footer_link_4') }}</a></li>
                     <li><i class="fas fa-chevron-right"></i><a href="{{ url('services') }}">{{ __('home.footer_link_5') }}</a></li>
-                    <li><i class="fas fa-chevron-right"></i><a href="{{ url('mission-vision') }}">Mission & Vision</a></li>
+                    <li><i class="fas fa-chevron-right"></i><a href="{{ url('mission-vision') }}">{{ __('home.footer_link_6') }}</a></li>
                 </ul>
             </div>
             <div class="links">
                 <h2>{{ __('home.footer_title_2') }}</h2>
                 <ul>
                     <li>
-                        <i class="far fa-envelope"></i><a href="">{{ __('home.footer_email') }}</a>
+                        <i class="far fa-envelope"></i><a href="mailto:{{ __('home.footer_email') }}" 
+                                                          title="Send us an email"
+                                                          aria-label="Send email to {{ __('home.footer_email') }}">
+                                                            {{ __('home.footer_email') }}
+                                                        </a>
                     </li>
                     <li>
-                        <i class="fas fa-phone-alt"></i><a href="">{{ __('home.footer_phone') }}</a>
+                        <i class="fas fa-phone-alt"></i> <a href="tel:{{ __('home.footer_phone_1') }}" 
+                                                            title="Call us"
+                                                            aria-label="Call {{ __('home.footer_phone_1') }}">
+                                                              {{ __('home.footer_phone_1') }}
+                                                         </a>
+                    </li>
+                      <li>
+                         <i class="fas fa-phone-alt"></i><a href="tel:{{ __('home.footer_phone_2') }}" 
+                               title="Call us (Mobile)"
+                               aria-label="Call {{ __('home.footer_phone_2') }}">
+                                {{ __('home.footer_phone_2') }}
+                            </a>
                     </li>
                     <li>
-                        <i class="fas fa-map-marker-alt"></i><a href="">{{ __('home.footer_address') }}</a>
+                        <i class="fas fa-map-marker-alt"></i>   <a href="https://maps.google.com/?q={{ urlencode(__('home.footer_address')) }}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           title="View on Google Maps"
+           aria-label="View {{ __('home.footer_address') }} on Google Maps">{{ __('home.footer_address') }}</a>
                     </li>
                 </ul>
                 <div class="social">

@@ -135,8 +135,14 @@
                 });
                 $('#add-service_btn').click(function() {
                     $('#serviceModal').modal('show');
+                      $('#service_id').val(''); // ✅ Clear the hidden ID to force create mode
                     $('#serviceModal').trigger('reset');
+                    
                     $("#modal-title_service").text("Add Slider")
+
+                      // Clear CKEditor content
+                        CKEDITOR.instances['service_description'].setData('');
+                        CKEDITOR.instances['service_description_ar'].setData('');
 
                     pond.removeFiles();
                 });

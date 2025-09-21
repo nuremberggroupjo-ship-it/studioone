@@ -65,6 +65,7 @@ class PostController extends Controller
                 }
     
                 $imagePath = $request->file('image_path')->store('posts_images', 'public');
+                
             } else {
                 $imagePath = $post->image_path;
             }

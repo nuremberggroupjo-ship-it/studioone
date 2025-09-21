@@ -60,7 +60,7 @@
                         <h4 class="subtitle">{{ __('home.get_in_touch') }}</h4>
                         <h2 class="title">{{ __('home.contact_title_form') }}</h2>
                     </div>
-                    <form action="{{ route(name: 'contact.send') }}" method="post">
+                    <form action="{{ route('contact.send') }}" method="post">
                         @csrf
                         <div class="input-group">
                             <input type="text" placeholder="{{ __('home.first_name') }}" name="first_name" required>
@@ -83,3 +83,14 @@
     </section>
     <!-- End Contact  -->
 @endsection
+
+
+@push('scripts')
+    @if(session('success'))
+        <script>
+            $(document).ready(function () {
+                toastr.success("{{ session('success') }}");
+            });
+        </script>
+    @endif
+@endpush

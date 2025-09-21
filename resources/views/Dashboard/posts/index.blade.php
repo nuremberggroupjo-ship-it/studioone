@@ -16,9 +16,14 @@
         }
     </style>
 @endpush
-
+        
 @section('content')
     <div class="container">
+        <!-- <div class="d-flex justify-content-end">
+            <button class="btn btn-primary mb-3" id="add-post_btn" data-bs-toggle="modal" data-bs-target="#postModal">
+                Add Post
+            </button>
+        </div> -->
         <div class="card">
             <div class="card-body">
                 <table id="posts-table" class="table table-bordered">
@@ -54,7 +59,7 @@
                         data: 'image_path',
                         name: 'image_path',
                         render: function(data) {
-                            return `<img src="/storage/${data}" alt="Post Image" style="width: 80px;height: 80px;object-fit: cover;">`;
+                            return `<img src="/storage/app/public/${data}" alt="Post Image" style="width: 80px;height: 80px;object-fit: cover;">`;
                         }
                     }, {
                         data: 'name',
@@ -143,7 +148,7 @@
                                 FilePond.find(document.querySelector('#image_path')).removeFiles();
                                 if (post.image_path) {
                                     FilePond.find(document.querySelector('#image_path')).addFile(
-                                        location.origin + "/storage/" + post.image_path);
+                                        location.origin + "/storage/app/public/" + post.image_path);
                                 }
 
                                 if (CKEDITOR.instances['description']) {

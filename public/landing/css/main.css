@@ -438,6 +438,8 @@ section.banner .banner-container .content .text {
 }
 html[lang="ar"] section.banner .banner-container .content .text {
     text-align: right;
+    margin-right: 0;
+    margin-left: 30px;
 }
 section.banner .banner-container .content .text h1 {
     font-size: 4rem;
@@ -445,7 +447,7 @@ section.banner .banner-container .content .text h1 {
     color: var(--main-color);
     margin-bottom: 0;
     margin-top: 60px;
-    line-height: 60px;
+    line-height: 80px;
 }
 
 section.banner .banner-container .content .text p {
@@ -459,11 +461,13 @@ section.banner .banner-container .content .text p {
 @media (max-width: 1240px) {
     section.banner .banner-container .content .text h1 {
         font-size: 3rem;
+        line-height: 60px;
     }
 }
 @media (max-width: 768px) {
     section.banner .banner-container .content .text h1 {
         font-size: 2.5rem;
+        line-height: 50px;
     }
 }
 
@@ -526,7 +530,7 @@ section.banner .banner-container .content .image img {
 .swiper-pagination-bullet {
     width: 12px;
     height: 12px;
-    background-color: var(--main-color-alt);
+    background-color: var(--main-color) !important;
     opacity: 0.5;
     border-radius: 50%;
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -1789,8 +1793,8 @@ section.project .container {
     gap: 20px;
     color: var(--main-color);
 }
-@media(max-width:787px){
-    section.project .container{
+@media (max-width: 787px) {
+    section.project .container {
         flex-direction: column;
     }
 }
@@ -1841,7 +1845,7 @@ section.project .project-categories > div {
     -ms-border-radius: var(--radius);
     -o-border-radius: var(--radius);
 }
-@media(max-width:787px){
+@media (max-width: 787px) {
     section.project .project-categories > div {
         margin-left: 0;
     }
@@ -1867,7 +1871,6 @@ section.service {
     padding-top: var(--main-padding-top);
     padding-bottom: var(--main-padding-bottom);
     background-color: #222224;
-
 }
 section.service .overlay {
     opacity: 0.2;

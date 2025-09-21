@@ -19,7 +19,7 @@ class ContactController extends Controller
         ]);
 
         $data = $request->all();
-        Mail::to('mustafa.albojok.17@gmail.com')->send(new ContactMail($data));
+        Mail::to('info@studioonejo.com')->send(new ContactMail($data));
         return back()->with('success', 'Your message has been sent successfully.');
     }
 }

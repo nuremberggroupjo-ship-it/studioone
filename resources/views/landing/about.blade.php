@@ -22,7 +22,7 @@
     <!-- Start About Us -->
     <section class="aboutUs page-section">
         <div class="container">
-            <div class="image" style="background-image: url('{{ asset('storage/' . $posts[0]->image_path) }}')"></div>
+            <div class="image" style="background-image: url('{{ asset('storage/app/public/' . $posts[0]->image_path) }}')"></div>
             <div class="content">
                 <div class="top-content">
                     <h3>{{ App::getLocale() === 'ar' ? $posts[0]->name_ar : $posts[0]->name }}</h3>

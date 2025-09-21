@@ -6,14 +6,14 @@
     <section class="banner title-banner">
         <div class="container">
             <div class="title">
-                <h1>{{ $project->title }}</h1>
+                <h1>{{ App::getLocale() === 'ar'? $project->title_ar : $project->title }}</h1>
             </div>
             <div class="path">
                 <a href="{{ route('home') }}">{{ __('home.home') }}</a>
                 <span> <i class="fas fa-chevron-right"></i> <i class="fas fa-chevron-right"></i> </span>
                 <a href="{{ route('projects') }}">{{ __('home.projects_title_page') }}</a>
                 <span> <i class="fas fa-chevron-right"></i> <i class="fas fa-chevron-right"></i> </span>
-                <a href="{{ route('project', $project->id) }}">{{ $project->title }}</a>
+                <a href="{{ route('project', $project->id) }}">{{ App::getLocale() === 'ar'? $project->title_ar : $project->title }}</a>
             </div>
         </div>
         <div class="overlay"></div>
