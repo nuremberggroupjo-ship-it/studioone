@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Dashboard;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Post;
@@ -13,7 +11,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->ajax()) {
+        if($request->ajax()){
             return $this->getPosts($request);
         }
 
@@ -23,20 +21,21 @@ class PostController extends Controller
     public function getPosts($request)
     {
         $posts = Post::latest()->get();
-
         return DataTables::of($posts)
-            ->addColumn('action', function ($row) {
-                $imagePath = $row->image_path 
-                    ? Storage::url($row->image_path) 
-                    : asset('default-post.jpg');
-
-                return '
-                    <a href="#" class="btn btn-sm btn-light edit-btn" data-id="' . $row->id . '">Edit</a>
-                    <a href="#" class="btn btn-sm btn-danger delete-btn" data-id="' . $row->id . '">Delete</a>
-                ';
-            })
-            ->rawColumns(['action'])
-            ->make(true);
+        ->addColumn('action', function ($row) {
+            $imagePath = !empty($row->image_path) && str_contains($row->image_path, "posts_images") ? "/storage/" . $row->image_path : '/default-post.jpg';
+            return '
+                <a href="#" class="btn btn-sm btn-light edit-btn"
+                    data-id="' . $row->id . '"
+                >Edit</a>
+                <a href="#" class="btn btn-sm btn-danger delete-btn"
+                    data-id="' . $row->id . '"
+                >Delete</a>
+            ';
+        })
+        ->rawColumns(['action'])
+        ->make(true);
+    
     }
 
     public function store(Request $request)
@@ -53,19 +52,20 @@ class PostController extends Controller
             'button_link' => 'required|url',
             'image_path' => 'nullable|image|mimes:jpg,jpeg,png,webp,avif|max:2048',
         ]);
-
+    
         $post = null;
         $imagePath = null;
-
+    
         if ($request->has('id') && $request->id) {
             $post = Post::findOrFail($request->id);
-
+    
             if ($request->hasFile('image_path')) {
                 if ($post->image_path) {
-                    Storage::disk('public')->delete($post->image_path);
+                    Storage::disk('public')->delete(paths: $post->image_path);
                 }
-
+    
                 $imagePath = $request->file('image_path')->store('posts_images', 'public');
+                
             } else {
                 $imagePath = $post->image_path;
             }
@@ -74,16 +74,16 @@ class PostController extends Controller
                 $imagePath = $request->file('image_path')->store('posts_images', 'public');
             }
         }
-
-        $slug = Str::slug($request->name);
-
+    
+        $slug = \Str::slug($request->name);
+    
         if (!$post) {
             $slugCount = Post::where('slug', $slug)->count();
             if ($slugCount > 0) {
                 $slug = $slug . '-' . time();
             }
         }
-
+    
         if ($post) {
             $post->update([
                 'small_header' => $request->small_header,
@@ -114,21 +114,21 @@ class PostController extends Controller
             ]);
             $message = 'Post created successfully!';
         }
-
+    
         return response()->json(['message' => $message, 'post' => $post]);
     }
-
+    
+    
+    
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
         if ($post->image_path) {
-            Storage::disk('public')->delete($post->image_path);
+            Storage::disk(name: 'public')->delete(paths: $post->image_path);
         }
         $post->delete();
-
         return response()->json(['message' => 'Post deleted successfully']);
     }
-
     public function show($id)
     {
         $post = Post::find($id);
