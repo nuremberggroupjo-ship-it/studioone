@@ -21,6 +21,22 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## Studio One Application
+
+This is a Laravel-based web application for Studio One.
+
+### HTTPS Configuration
+
+The application automatically enforces HTTPS URLs for assets when deployed in production environments or when running behind a reverse proxy. This prevents mixed content issues when the application is served over HTTPS.
+
+**For production deployment:**
+1. Set `APP_ENV=production` in your environment variables
+2. Set `APP_URL` to your HTTPS domain (e.g., `https://studioone.onrender.com`)
+3. The application will automatically generate HTTPS URLs for all assets
+
+**Proxy Support:**
+The application detects when running behind a reverse proxy (common with platforms like Render, Heroku, etc.) by checking the `X-Forwarded-Proto` header and automatically switches to HTTPS URL generation when appropriate.
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
