@@ -20,7 +20,7 @@ class AboutUsSeeder extends Seeder
             'button_name' => 'Read More',
             'button_name_ar' => 'اقرأ المزيد',
             'button_link' => '#',
-            'image_path' => '/defualt-post.jpg',  
+            'image_path' => null,  
             'created_at' => now(),
             'updated_at' => now(),
         ]);
