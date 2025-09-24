@@ -22,7 +22,7 @@
     <!-- Start About Us -->
     <section class="page-section mission-vision-section">
         <div class="container">
-            <div class="image" style="background-image: url('{{ asset('storage/app/public/' . $ourMission[0]->image_path) }}')"></div>
+            <div class="image" style="background-image: url('{{ asset('storage/' . $ourMission[0]->image_path) }}')"></div>
             <div class="content">
                 <div class="top-content">
                     <p>{{ App::getLocale() === 'ar' ? $ourMission[0]->small_header_ar : $ourMission[0]->small_header }}</p>
@@ -45,7 +45,7 @@
                     </p>
                 </div>
             </div>
-            <div class="image" style="background-image: url('{{ asset('storage/app/public/' . $ourVision[0]->image_path) }}')"></div>
+            <div class="image" style="background-image: url('{{ asset('storage/' . $ourVision[0]->image_path) }}')"></div>
 
         </div>
         <div class="overlay"></div>

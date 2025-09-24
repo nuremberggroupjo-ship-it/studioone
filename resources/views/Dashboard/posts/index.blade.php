@@ -59,7 +59,7 @@
                         data: 'image_path',
                         name: 'image_path',
                         render: function(data) {
-                            return `<img src="/storage/app/public/${data}" alt="Post Image" style="width: 80px;height: 80px;object-fit: cover;">`;
+                            return `<img src="/storage/${data}" alt="Post Image" style="width: 80px;height: 80px;object-fit: cover;">`;
                         }
                     }, {
                         data: 'name',
@@ -148,7 +148,7 @@
                                 FilePond.find(document.querySelector('#image_path')).removeFiles();
                                 if (post.image_path) {
                                     FilePond.find(document.querySelector('#image_path')).addFile(
-                                        location.origin + "/storage/app/public/" + post.image_path);
+                                        location.origin + "/storage/" + post.image_path);
                                 }
 
                                 if (CKEDITOR.instances['description']) {
