@@ -59,7 +59,6 @@ class SliderController extends Controller
                 Storage::disk('public')->delete(paths: $slider->image);
             }
             $data['image'] = $request->file(key: 'image')->store('sliders', 'public');
-            copy(storage_path("app/public/{$data['image']}"), public_path("storage/{$data['image']}"));
         }
 
         Slider::updateOrCreate(['id' => $request->id], $data);
