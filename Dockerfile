@@ -32,6 +32,9 @@ COPY --from=frontend /app/public/build ./public/build
 # تثبيت Composer dependencies
 RUN composer install --no-dev --optimize-autoloader
 
+# إزالة public/storage إذا كان موجوداً وإنشاء الرابط الرمزي للتخزين
+RUN rm -rf public/storage && ln -s ../storage/app/public public/storage
+
 # إصلاح الصلاحيات لجميع الملفات العامة (public) + storage
 RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www/public /var/www/storage
 
