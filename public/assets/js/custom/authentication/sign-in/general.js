@@ -136,13 +136,13 @@ var KTSigninGeneral = function () {
                                 customClass: {
                                     confirmButton: "btn btn-primary"
                                 }
+                            }).then(function (result) {
+                                if (result.isConfirmed) {
+                                    // Redirect to admin dashboard or custom URL
+                                    const redirectUrl = form.getAttribute('data-kt-redirect-url');
+                                    location.href = redirectUrl || '/admin';
+                                }
                             });
-
-                            const redirectUrl = form.getAttribute('data-kt-redirect-url');
-
-                            if (redirectUrl) {
-                                location.href = redirectUrl;
-                            }
                         } else {
                             // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                             Swal.fire({
@@ -189,6 +189,11 @@ var KTSigninGeneral = function () {
     }
 
     var isValidUrl = function(url) {
+        // Accept relative URLs (starting with /)
+        if (url && url.startsWith('/')) {
+            return true;
+        }
+        // Accept absolute URLs
         try {
             new URL(url);
             return true;
