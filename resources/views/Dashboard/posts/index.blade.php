@@ -1,7 +1,7 @@
 @extends('Dashboard.layouts.app')
 
 @push('styles')
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.0.1/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.0.1/ckeditor.js"></script>
     <style>
         .ck.ck-editor {
             z-index: 99999 !important;
