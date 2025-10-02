@@ -11,7 +11,7 @@
                 <!--begin::Wrapper-->
                 <div class="w-lg-500px p-10">
                     <!--begin::Form-->
-                    <form method="POST" action="{{ route('login') }}" class="form w-100" novalidate="novalidate" id="kt_sign_in_form">
+                    <form method="POST" action="{{ route('login') }}" class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="{{ route('admin.dashboard') }}">
                         @csrf
                         <!--begin::Heading-->
                         <div class="text-center mb-11">
